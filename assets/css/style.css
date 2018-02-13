@@ -2,7 +2,7 @@ body {
     background: linear-gradient(rgba(0, 0, 0, 0.567),rgba(0, 0, 0, 0.536)), url('http://i.imgur.com/aTURT51.jpg') no-repeat;
     background-size: cover;
     background-position: center scroll;
-    font-family: Lato, cursive, sans-serif;    
+    font-family: cursive, sans-serif;    
     min-height: 100vh;
     min-width: 320px;
     color: #ebe0c5;
@@ -10,40 +10,59 @@ body {
     text-transform: capitalize;
     /* background-color: black; */
 }
+
+/* .head-banner{
+    background-color: antiquewhite;
+    height: 80px;
+    color: black;
+} */
+
 /* Characters */
 .char-div{
     border-radius: 50px;
     width: 250px;
     height: 150px;
+    text-align: center;
+    background: black;
+    background-size: cover;
+    background-position: center;
+    width: 25%;
+    font-size: 1.4em;
+    line-height: 1;
 }
 
-#char-frodo{
-    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3)), url('https://cdn.costumewall.com/wp-content/uploads/2017/06/frodo-baggins.jpg');
+
+.char-frodo{
+    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://cdn.costumewall.com/wp-content/uploads/2017/06/frodo-baggins.jpg');
     background-size: cover;
     background-position: center;
     
 }
-#char-smeagol{
-    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3)), url('https://cdna.artstation.com/p/assets/images/images/004/532/170/large/eduardo-ruiz-urrejola-gollum-pose09.jpg?1484348343');
+.char-smeagol{
+    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://cdna.artstation.com/p/assets/images/images/004/532/170/large/eduardo-ruiz-urrejola-gollum-pose09.jpg?1484348343');
     background-size: cover;
     background-position: center;
 }
-#char-gandalf{
-    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3)), url('https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436');
+.char-gandalf{
+    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436');
     background-size: cover;
     background-position: center;
 
 }
-#char-sauron{
-    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3)), url('https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330');
+.char-sauron{
+    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330');
     background-size: cover;
     background-position: center;
 
 }
 
 h4 {
-    margin-bottom: 75px;
     font-size: 1.5em;
+}
+
+p {
+    font-size: 4em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 /* Containers */
@@ -59,10 +78,6 @@ h4 {
  /* height: 200px; */
 }
 
-.char-div {
-    width: 25%;
-    font-size: 1.4em;
-}
 /* Your Character Section */
 .your-character{
     /* height: 200px; */
