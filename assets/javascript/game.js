@@ -1,21 +1,18 @@
-// GAME
-//Global variables
-// $(document).ready(function() {
-// add health attributes to char divs
+// GAME=======================================
 
 // Game Object
 var game = {
     characters : {
         frodo : {
-            name: 'Frodo',
+            name: 'frodo',
             health: 120,
             attack: 12,
             imgURL: "https://cdn.costumewall.com/wp-content/uploads/2017/06/frodo-baggins.jpg",
             enemyAttack: 20,
             createDiv: function(){
-                var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-frodo")
+                var wrapDiv = $("<div></div>").addClass(`char-div col-xs-3 choice enemy char-${this.name}`)
                 var nameDiv = $("<h4></h4>").text(this.name);
-                var health = $("<p></p>").text(this.health);
+                var health = $("<p class = 'health-display'></p>").text(this.health);
                 wrapDiv.append(nameDiv, health);
                 wrapDiv.attr("health",this.health);
                 wrapDiv.attr("attack",this.attack);
@@ -29,9 +26,9 @@ var game = {
             imgURL: "https://cdna.artstation.com/p/assets/images/images/004/532/170/large/eduardo-ruiz-urrejola-gollum-pose09.jpg?1484348343",
             enemyAttack: 20,
             createDiv: function(){
-                var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-smeagol");
+                var wrapDiv = $("<div></div>").addClass(`char-div col-xs-3 choice enemy char-${this.name}`)
                 var nameDiv = $("<h4></h4>").text(this.name);
-                var health = $("<p></p>").text(this.health);
+                var health = $("<p class = 'health-display'></p>").text(this.health);
                 wrapDiv.append(nameDiv, health);
                 wrapDiv.attr("health",this.health);
                 wrapDiv.attr("attack",this.attack);
@@ -47,7 +44,7 @@ var game = {
             createDiv: function(){
                 var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-gandalf");
                 var nameDiv = $("<h4></h4>").text(this.name);
-                var health = $("<p></p>").text(this.health);
+                var health = $("<p class = 'health-display'></p>").text(this.health);
                 wrapDiv.append(nameDiv, health);
                 wrapDiv.attr("health",this.health);
                 wrapDiv.attr("attack",this.attack);
@@ -63,7 +60,7 @@ var game = {
             createDiv: function(){
                 var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-sauron");
                 var nameDiv = $("<h4></h4>").text(this.name);
-                var health = $("<p></p>").text(this.health);
+                var health = $("<p class = 'health-display'></p>").text(this.health);
                 wrapDiv.append(nameDiv, health);
                 wrapDiv.attr("health",this.health);
                 wrapDiv.attr("attack",this.attack);
@@ -77,27 +74,59 @@ var game = {
         yourAttack : 0,
         yourEnemies : "",
         yourOpponent : "",
+        charactersLeft : 0,
     },
     functions : {
         initGame : function() {
+            yourCharacter : "";
+            yourHealth : 0;
+            yourAttack : 0;
+            yourEnemies : "";
+            yourOpponent : "";
+            $('.char-div').remove();
             game.characters.frodo.createDiv();
             game.characters.gandalf.createDiv();
             game.characters.smeagol.createDiv();
             game.characters.sauron.createDiv();
+            charactersLeft = $('.char-div').length
             game.functions.pickCharacter();
+            $('.character-choose').show()
+            $('.your-character').hide()
+            $('.fight-button').hide()
+            $('.opponent').hide()
+            $('.enemies').hide()
+            $('.your-death-note').hide()
+            $('.opponent-death-note').hide()
+        },
+        initCharacter : function() {
+            function create(){
+                var wrapDiv = $("<div></div>").addClass(`char-div col-xs-3 choice enemy char-${this.name}`)
+                var nameDiv = $("<h4></h4>").text(this.name);
+                var health = $("<p class = 'health-display'></p>").text(this.health);
+                wrapDiv.append(nameDiv, health);
+                wrapDiv.attr("health",this.health);
+                wrapDiv.attr("attack",this.attack);
+                $(".character-choose").append(wrapDiv);
+            }
+            create()
         },
         pickCharacter : function() {
             $('.choice').on("click",function(event){
+                $('.your-character').show()
+                $('.fight-button').show()
+                $('.opponent').show()
+                $('.enemies').show()
                 $(this).removeClass('enemy');
                 yourCharacter = $(this);
                 yourHealth = $(this).attr('health');
+                // $(this).children().text(yourHealth);
                 yourAttack = $(this).attr('attack');
                 yourHealth = parseInt(yourHealth);
                 yourAttack = parseInt(yourAttack);
                 $('.your-character').append(yourCharacter);
                 yourEnemies = $('.enemy');
                 yourEnemies.removeClass('choice');
-                $('.enemies-to-attack').append(yourEnemies);
+                $('.enemies').append(yourEnemies);
                 console.log('character chosen');
                 $('div').off("click");
                 $('.character-choose').hide()
@@ -106,6 +135,7 @@ var game = {
         },
         pickEnemyToFight : function() {
             $('.enemy').on("click",function(event){
+                $('.opponent-death-note').hide()
                 $(this).addClass('yourOpponent');
                 yourOpponent = $(this);
                 opponentHealth = $(this).attr('health');
@@ -115,134 +145,65 @@ var game = {
                 $('.opponent').append(yourOpponent);
                 $('div').off("click");
                 console.log("enemy chosen");
-                game.functions.attackButton();
+                game.functions.attack();
             });
         },
-        attackButton : function(){
+        attack : function(){
             $('.fight-button').on("click",function(event){
                 yourHealth = yourHealth - opponentAttack;
                 opponentHealth = opponentHealth - yourAttack;
-                yourAttack = yourAttack + Math.floor(yourAttack * 0.1);
-                console.log(yourHealth);
-                console.log(opponentHealth);
+                yourAttack = yourAttack + Math.floor(yourAttack * 0.2);
+                yourCharacter.children('.health-display').text(yourHealth);
+                yourOpponent.children('.health-display').text(opponentHealth);
+                console.log(`Your Character's Health: ${yourHealth}`);
+                console.log(`Your Opponent's Health: ${opponentHealth}`);
+                if (opponentHealth <= 0 && yourHealth <= 0){
+                    yourCharacter.remove();
+                    yourOpponent.remove()                               
+                    $('.button-text').text("Restart!");
+                    $('.fight-button').off("click");
+                    $('.titles').hide()
+                    $('.result-note').text("Drats! You all have died. Click sheild to restart")
+                    $('.fight-button').on("click",function(event){
+                        game.functions.initGame();
+                    });                
+                } else if (yourHealth <= 0){
+                    yourCharacter.remove();
+                    $('.button-text').text("Restart!");
+                    $('.fight-button').off("click");
+                    $('.your-death-note').show()
+                    $('.fight-button').on("click",function(event){
+                        game.functions.initGame();
+                    });
+                } else if (opponentHealth <= 0){
+                    yourOpponent.remove()  
+                    $('.fight-button').off("click"); 
+                    $('.opponent-death-note').text("Hell yeah. Choose your Next Enemy!").show()         
+                    charactersLeft = charactersLeft - 1;                            
+                    game.functions.pickEnemyToFight();   
+                    if (charactersLeft === 1){
+                        $('.button-text').text("Restart!");
+                        $('.fight-button').off("click");
+                        $('.fight-button').on("click",function(event){
+                        game.functions.initGame();
+                        });
+                        game.functions.winScreen()
+                    }            
+                }
             });
+        },
+        winScreen : function() {
+            $('.your-character').addClass('col-xs-offset-3')
+            // $('.fight-button').hide()
+            $('.opponent').hide()
+            $('.win-text').text('Wins!')
         }
     }
 }
 
+// When document is ready, start game
 $(document).ready(function() {
     game.functions.initGame();
+    var y = $('.char-div').length;
+    console.log(y);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 1. Have four different sections. 1 for charactesr. One for your characters. One for enemies. One for the fight  button. One for defender section.
-
-// generate a div for each character with a name, image, and health value.
-
-
-
-
-// Place them all in first character section.
-// Click on one character it moves to your character section. The others omve to the enemies available to attack.
-// User needs to choose one to fight and on click of it, it moves to defender section.
-// When hitting the attack button, your character and the defender character attack eatother with points. You cannot get out of the battle.
-// who ever ends up with 0 or less health first dies and a restart button comes up to completely reset the game if your character dies.
-// If the other character is defeated, then they are removed from the game and you can choose another character to fight.
-// IF attack button is clicked, then the bottom displays "no enemy here"
-// Your attack power increases with every blow and continues to stay higher when you defeat a character. 
-// If you beat all the enemies, you win and there is a restart button to restart. 
-
-// var pickCharacterReady;
-// var pickFightReady
-// var yourCharacter;
-// var yourHealth;
-// var yourAttack;
-// var yourEnemies;
-// var yourOpponent;
-// var readyForAttack;
-
-// // Choose your character
-
-// function startGame() {
-//     game.characters.frodo.createDiv();
-//     game.characters.gandalf.createDiv();
-//     game.characters.smeagol.createDiv();
-//     game.characters.sauron.createDiv();
-//     pickCharacter();
-// }
-
-
-    
-
-// function pickCharacter(){
-
-//     $('.choice').on("click",function(event){
-//         $(this).removeClass('enemy');
-//         yourCharacter = $(this);
-//         yourHealth = $(this).attr('health');
-//         yourAttack = $(this).attr('attack');
-//         yourHealth = parseInt(yourHealth);
-//         yourAttack = parseInt(yourAttack);
-//         $('.your-character').append(yourCharacter);
-//         yourEnemies = $('.enemy');
-//         yourEnemies.removeClass('choice');
-//         $('.enemies-to-attack').append(yourEnemies);
-//         console.log('character chosen');
-//         $('div').off("click");
-//         $('.character-choose').hide()
-//         pickEnemyToFight();
-//     });
-
-// }
-
-// function pickEnemyToFight() {
-
-//     $('.enemy').on("click",function(event){
-//         $(this).addClass('yourOpponent');
-//         yourOpponent = $(this);
-//         opponentHealth = $(this).attr('health');
-//         opponentAttack = $(this).attr('attack');
-//         opponentHealth = parseInt(opponentHealth);
-//         opponentAttack = parseInt(opponentAttack);
-//         $('.opponent').append(yourOpponent);
-//         $('div').off("click");
-//         console.log("enemy chosen");
-//     })
-
-// }
-
-// function damageDone(){
-//     var yourHealth = $('.')
-// }
-
-
-// Button
-// $('#attack-btn').on('click', function(){})
-
-
-
-// startGame()
-
-
-
-
-
-
-// var charFrodo = $('#char-frodo')
-// var charGandalf = $('#char-gandalf')
-// var charSmeagol = $('#char-smeagol')
-// var charSauron = $('#char-sauron')

@@ -1,7 +1,7 @@
 body {
     background: linear-gradient(rgba(0, 0, 0, 0.567),rgba(0, 0, 0, 0.536)), url('http://i.imgur.com/aTURT51.jpg') no-repeat;
     background-size: cover;
-    background-position: center scroll;
+    background-position: center fixed;
     font-family: cursive, sans-serif;    
     min-height: 100vh;
     min-width: 320px;
@@ -20,7 +20,7 @@ body {
 /* Characters */
 .char-div{
     border-radius: 50px;
-    width: 100%;
+    width: 50%;
     height: 200px;
     text-align: center;
     background: black;
@@ -65,6 +65,9 @@ p {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+h1{
+    margin-bottom: 50px;
+}
 /* Containers */
 .container {
 
@@ -79,9 +82,10 @@ p {
 }
 
 /* Your Character Section */
-.your-character{
-    /* height: 200px; */
+.your-character>.char-div{
+    width: 100%;
 }
+
 /* Enemies to Attack section */
 .enemies-to-attack{
     /* height: 200px; */
@@ -102,7 +106,7 @@ i {
 
 }
 /* Defender Section */
-.defender>.char-div{
+.opponent>.char-div{
     width: 100%;
 
 }
