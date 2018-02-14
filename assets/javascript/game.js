@@ -1,7 +1,7 @@
 // GAME
 //Global variables
 // $(document).ready(function() {
-
+// add health attributes to char divs
 
 // Object of Characters
 
@@ -16,7 +16,9 @@ var characters = {
             var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-frodo")
             var nameDiv = $("<h4></h4>").text(this.name);
             var health = $("<p></p>").text(this.health);
-            wrapDiv.append(nameDiv, health)
+            wrapDiv.append(nameDiv, health);
+            wrapDiv.attr("health",120);
+            wrapDiv.attr("attack",13);
             $(".character-choose").append(wrapDiv); 
         }       
     },
@@ -27,10 +29,12 @@ var characters = {
         imgURL: "https://cdna.artstation.com/p/assets/images/images/004/532/170/large/eduardo-ruiz-urrejola-gollum-pose09.jpg?1484348343",
         enemyAttack: 20,
         createDiv: function(){
-            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-smeagol")
+            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-smeagol");
             var nameDiv = $("<h4></h4>").text(this.name);
             var health = $("<p></p>").text(this.health);
-            wrapDiv.append(nameDiv, health)
+            wrapDiv.append(nameDiv, health);
+            wrapDiv.attr("health",130);
+            wrapDiv.attr("attack",16);
             $(".character-choose").append(wrapDiv); 
         }         
     },
@@ -41,10 +45,12 @@ var characters = {
         imgURL: "https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436",
         enemyAttack: 22,
         createDiv: function(){
-            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-gandalf")
+            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-gandalf");
             var nameDiv = $("<h4></h4>").text(this.name);
             var health = $("<p></p>").text(this.health);
-            wrapDiv.append(nameDiv, health)
+            wrapDiv.append(nameDiv, health);
+            wrapDiv.attr("health",160);
+            wrapDiv.attr("attack",20);
             $(".character-choose").append(wrapDiv); 
         }         
     },
@@ -55,10 +61,12 @@ var characters = {
         imgURL: "https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330",
         enemyAttack: 20,
         createDiv: function(){
-            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-sauron")
+            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-sauron");
             var nameDiv = $("<h4></h4>").text(this.name);
             var health = $("<p></p>").text(this.health);
-            wrapDiv.append(nameDiv, health)
+            wrapDiv.append(nameDiv, health);
+            wrapDiv.attr("health",180);
+            wrapDiv.attr("attack",25);
             $(".character-choose").append(wrapDiv); 
         }  
     }
@@ -74,6 +82,8 @@ var characters = {
 var pickCharacterReady;
 var pickFightReady
 var yourCharacter;
+var yourHealth;
+var yourAttack;
 var yourEnemies;
 var fightMe;
 var readyForAttack;
@@ -89,15 +99,19 @@ function startGame() {
 
 function pickCharacter(){
     
-    $('.choice').one("click",function(event){
+    $('.choice').on("click",function(event){
         $(this).removeClass('enemy')
         yourCharacter = $(this);
+        yourHealth = $(this).attr('health')
+        yourAttack = $(this).attr('attack')
+        yourHealth = parseInt(yourHealth);
+        yourAttack = parseInt(yourAttack);
         $('.your-character').append(yourCharacter);
         yourEnemies = $('.enemy');
-        yourEnemies.removeClass('choice')
+        yourEnemies.removeClass('choice');
+        $('.enemy').off("click");
         $('.enemies-to-attack').append(yourEnemies);
-        pickEnemyToFight()
-        return
+        pickEnemyToFight();
     });
 
     
@@ -105,7 +119,7 @@ function pickCharacter(){
 
 function pickEnemyToFight() {
 
-    $('.enemy').one("click",function(event){
+    $('.enemy').on("click",function(event){
         $(this).addClass('fightMe')
         fightMe = $(this);
         $('.defender').append(fightMe);
@@ -114,9 +128,9 @@ function pickEnemyToFight() {
 
 }
 
-// function damageDone(){
-//     var yourHealth = $('.')
-// }
+function damageDone(){
+    var yourHealth = $('.')
+}
 
 
 // Button
