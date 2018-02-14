@@ -20,37 +20,37 @@ body {
 /* Characters */
 .char-div{
     border-radius: 50px;
-    width: 250px;
-    height: 150px;
+    width: 100%;
+    height: 200px;
     text-align: center;
     background: black;
     background-size: cover;
     background-position: center;
-    width: 25%;
+    /* width: 25%; */
     font-size: 1.4em;
-    line-height: 1;
+    line-height: 1.4;
 }
 
 
 .char-frodo{
-    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://cdn.costumewall.com/wp-content/uploads/2017/06/frodo-baggins.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url('https://cdn.costumewall.com/wp-content/uploads/2017/06/frodo-baggins.jpg');
     background-size: cover;
     background-position: center;
     
 }
 .char-smeagol{
-    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://cdna.artstation.com/p/assets/images/images/004/532/170/large/eduardo-ruiz-urrejola-gollum-pose09.jpg?1484348343');
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('https://cdna.artstation.com/p/assets/images/images/004/532/170/large/eduardo-ruiz-urrejola-gollum-pose09.jpg?1484348343');
     background-size: cover;
     background-position: center;
 }
 .char-gandalf{
-    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436');
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436');
     background-size: cover;
     background-position: center;
 
 }
 .char-sauron{
-    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330');
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330');
     background-size: cover;
     background-position: center;
 
@@ -88,17 +88,22 @@ p {
 
 }
 /* Fight Section */
-.fight-section{
-    /* height: 200px; */
+.fight-button{
+    margin-top: 20px;
 
 }
 
-#attack-btn {
-    background: rgb(163, 133, 78);
+i {
+    color: rgb(163, 133, 78);
+    margin: 0px 0 50px 0;
+    padding: 0 20px 20px 20px;
+    font-size: 10em;
+
+
 }
 /* Defender Section */
-.defender{
-    /* height: 200px; */
+.defender>.char-div{
+    width: 100%;
 
 }
 /* Footer */

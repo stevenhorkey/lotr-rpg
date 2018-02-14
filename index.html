@@ -7,7 +7,14 @@
     <title>LOTR JQuery Game</title>
     <!-- Stylesheets & Bootstrap CDN -->
     <link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <!-- JQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap JS CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- javascript -->
+    <script src="assets/javascript/game.js"></script>
 
 </head>
 <body>
@@ -19,38 +26,48 @@
             </div>
         </div>
     </div>
-    <!-- Character Choice Section -->
-    <div class="row">
-        <div class="container character-choose">
-            <h2>Characters to Choose</h2>
-            
+    <div class="container">
+        <!-- Character Choice Section -->
+        <div class="row">
+            <div class="character-choose">
+                <h2>Characters to Choose</h2>
+                
+            </div>
         </div>
-    </div>
-    <!-- Your Charcter Section -->
-    <div class="row">
-        <div class="container your-character">
-            <h2>Your Character</h2>
+
+        <!-- Battle Zone -->
+        <div class="row">
+            <!-- Your Charcter Section -->
+            <div class="your-character col-xs-5">
+                <h2>Your Character</h2>
+                
+            </div>
+
+            <!-- Fight Button -->
             
-        </div>
-    </div>
-    <!-- Enemies to attack section -->
-    <div class="row">
-        <div class="container enemies-to-attack">
-            <h2>Your Enemies</h2>
+                <div class="fight-button col-xs-2">
+                    <h3>Attack!</h3>
+                    <i class="fas fa-shield-alt"></i>
+                </div>
             
+
+            <!-- Opponent Section -->
+            <div class="opponent col-xs-5">
+                <h2>Your Opponent</h2>
+                
+                
+            </div>
         </div>
-    </div>
-    <!-- Fight Section -->
-    <div class="row">
-        <div class="container fight-section">
-            <button class="btn" id="attack-btn">Attack!</button>
+        <!-- Enemies to attack section -->
+        <div class="row">
+            <div class="enemies-to-attack">
+                <h2>Your Enemies</h2>
+                
+            </div>
         </div>
-    </div>
-    <!-- Defender Section -->
-    <div class="row">
-        <div class="container defender">
-            <h2>Current Opponent</h2>
-            
+        
+        
+        <div class="row">
             
         </div>
     </div>
@@ -60,11 +77,5 @@
         </div>
     </div>
 
-<!-- JQuery CDN -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Bootstrap JS CDN -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- javascript -->
-<script src="assets/javascript/game.js"></script>
 </body>
 </html>

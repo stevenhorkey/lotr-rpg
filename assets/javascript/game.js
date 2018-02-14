@@ -3,157 +3,136 @@
 // $(document).ready(function() {
 // add health attributes to char divs
 
-// Object of Characters
-
-var characters = {
-    frodo : {
-        name: 'Frodo',
-        health: 120,
-        attack: 12,
-        imgURL: "https://cdn.costumewall.com/wp-content/uploads/2017/06/frodo-baggins.jpg",
-        enemyAttack: 20,
-        createDiv: function(){
-            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-frodo")
-            var nameDiv = $("<h4></h4>").text(this.name);
-            var health = $("<p></p>").text(this.health);
-            wrapDiv.append(nameDiv, health);
-            wrapDiv.attr("health",120);
-            wrapDiv.attr("attack",13);
-            $(".character-choose").append(wrapDiv); 
-        }       
+// Game Object
+var game = {
+    characters : {
+        frodo : {
+            name: 'Frodo',
+            health: 120,
+            attack: 12,
+            imgURL: "https://cdn.costumewall.com/wp-content/uploads/2017/06/frodo-baggins.jpg",
+            enemyAttack: 20,
+            createDiv: function(){
+                var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-frodo")
+                var nameDiv = $("<h4></h4>").text(this.name);
+                var health = $("<p></p>").text(this.health);
+                wrapDiv.append(nameDiv, health);
+                wrapDiv.attr("health",this.health);
+                wrapDiv.attr("attack",this.attack);
+                $(".character-choose").append(wrapDiv); 
+            }       
+        },
+        smeagol : {
+            name: 'smeagol',
+            health: 130,
+            attack: 12,
+            imgURL: "https://cdna.artstation.com/p/assets/images/images/004/532/170/large/eduardo-ruiz-urrejola-gollum-pose09.jpg?1484348343",
+            enemyAttack: 20,
+            createDiv: function(){
+                var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-smeagol");
+                var nameDiv = $("<h4></h4>").text(this.name);
+                var health = $("<p></p>").text(this.health);
+                wrapDiv.append(nameDiv, health);
+                wrapDiv.attr("health",this.health);
+                wrapDiv.attr("attack",this.attack);
+                $(".character-choose").append(wrapDiv); 
+            }         
+        },
+        gandalf : {
+            name: 'gandalf',
+            health: 160,
+            attack: 20,
+            imgURL: "https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436",
+            enemyAttack: 22,
+            createDiv: function(){
+                var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-gandalf");
+                var nameDiv = $("<h4></h4>").text(this.name);
+                var health = $("<p></p>").text(this.health);
+                wrapDiv.append(nameDiv, health);
+                wrapDiv.attr("health",this.health);
+                wrapDiv.attr("attack",this.attack);
+                $(".character-choose").append(wrapDiv); 
+            }         
+        },
+        sauron : {
+            name: 'sauron',
+            health: 180,
+            attack: 25,
+            imgURL: "https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330",
+            enemyAttack: 20,
+            createDiv: function(){
+                var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-sauron");
+                var nameDiv = $("<h4></h4>").text(this.name);
+                var health = $("<p></p>").text(this.health);
+                wrapDiv.append(nameDiv, health);
+                wrapDiv.attr("health",this.health);
+                wrapDiv.attr("attack",this.attack);
+                $(".character-choose").append(wrapDiv); 
+            }  
+        }
     },
-    smeagol : {
-        name: 'smeagol',
-        health: 130,
-        attack: 12,
-        imgURL: "https://cdna.artstation.com/p/assets/images/images/004/532/170/large/eduardo-ruiz-urrejola-gollum-pose09.jpg?1484348343",
-        enemyAttack: 20,
-        createDiv: function(){
-            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-smeagol");
-            var nameDiv = $("<h4></h4>").text(this.name);
-            var health = $("<p></p>").text(this.health);
-            wrapDiv.append(nameDiv, health);
-            wrapDiv.attr("health",130);
-            wrapDiv.attr("attack",16);
-            $(".character-choose").append(wrapDiv); 
-        }         
+    variables : {
+        yourCharacter : "",
+        yourHealth : 0,
+        yourAttack : 0,
+        yourEnemies : "",
+        yourOpponent : "",
     },
-    gandalf : {
-        name: 'gandalf',
-        health: 160,
-        attack: 20,
-        imgURL: "https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436",
-        enemyAttack: 22,
-        createDiv: function(){
-            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-gandalf");
-            var nameDiv = $("<h4></h4>").text(this.name);
-            var health = $("<p></p>").text(this.health);
-            wrapDiv.append(nameDiv, health);
-            wrapDiv.attr("health",160);
-            wrapDiv.attr("attack",20);
-            $(".character-choose").append(wrapDiv); 
-        }         
-    },
-    sauron : {
-        name: 'sauron',
-        health: 180,
-        attack: 25,
-        imgURL: "https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330",
-        enemyAttack: 20,
-        createDiv: function(){
-            var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-sauron");
-            var nameDiv = $("<h4></h4>").text(this.name);
-            var health = $("<p></p>").text(this.health);
-            wrapDiv.append(nameDiv, health);
-            wrapDiv.attr("health",180);
-            wrapDiv.attr("attack",25);
-            $(".character-choose").append(wrapDiv); 
-        }  
+    functions : {
+        initGame : function() {
+            game.characters.frodo.createDiv();
+            game.characters.gandalf.createDiv();
+            game.characters.smeagol.createDiv();
+            game.characters.sauron.createDiv();
+            game.functions.pickCharacter();
+        },
+        pickCharacter : function() {
+            $('.choice').on("click",function(event){
+                $(this).removeClass('enemy');
+                yourCharacter = $(this);
+                yourHealth = $(this).attr('health');
+                yourAttack = $(this).attr('attack');
+                yourHealth = parseInt(yourHealth);
+                yourAttack = parseInt(yourAttack);
+                $('.your-character').append(yourCharacter);
+                yourEnemies = $('.enemy');
+                yourEnemies.removeClass('choice');
+                $('.enemies-to-attack').append(yourEnemies);
+                console.log('character chosen');
+                $('div').off("click");
+                $('.character-choose').hide()
+                game.functions.pickEnemyToFight();  
+            });
+        },
+        pickEnemyToFight : function() {
+            $('.enemy').on("click",function(event){
+                $(this).addClass('yourOpponent');
+                yourOpponent = $(this);
+                opponentHealth = $(this).attr('health');
+                opponentAttack = $(this).attr('attack');
+                opponentHealth = parseInt(opponentHealth);
+                opponentAttack = parseInt(opponentAttack);
+                $('.opponent').append(yourOpponent);
+                $('div').off("click");
+                console.log("enemy chosen");
+                game.functions.attackButton();
+            });
+        },
+        attackButton : function(){
+            $('.fight-button').on("click",function(event){
+                yourHealth = yourHealth - opponentAttack;
+                opponentHealth = opponentHealth - yourAttack;
+                yourAttack = yourAttack + Math.floor(yourAttack * 0.1);
+                console.log(yourHealth);
+                console.log(opponentHealth);
+            });
+        }
     }
 }
 
-// var characters = {
-//     frodo : $('#char-frodo'),
-//     gandalf : $('#char-gandalf'),
-//     smeagol : $('#char-smeagol'),
-//     sauron : $('#char-sauron')
-// }
-
-var pickCharacterReady;
-var pickFightReady
-var yourCharacter;
-var yourHealth;
-var yourAttack;
-var yourEnemies;
-var fightMe;
-var readyForAttack;
-
-// Choose your character
-
-function startGame() {
-    pickCharacterReady = true;
-    pickFightReady = false;
-    readyForAttack = false;
-    pickCharacter();
-}
-
-function pickCharacter(){
-    
-    $('.choice').on("click",function(event){
-        $(this).removeClass('enemy')
-        yourCharacter = $(this);
-        yourHealth = $(this).attr('health')
-        yourAttack = $(this).attr('attack')
-        yourHealth = parseInt(yourHealth);
-        yourAttack = parseInt(yourAttack);
-        $('.your-character').append(yourCharacter);
-        yourEnemies = $('.enemy');
-        yourEnemies.removeClass('choice');
-        $('.enemy').off("click");
-        $('.enemies-to-attack').append(yourEnemies);
-        pickEnemyToFight();
-    });
-
-    
-}
-
-function pickEnemyToFight() {
-
-    $('.enemy').on("click",function(event){
-        $(this).addClass('fightMe')
-        fightMe = $(this);
-        $('.defender').append(fightMe);
-        console.log("yey")
-    })
-
-}
-
-function damageDone(){
-    var yourHealth = $('.')
-}
-
-
-// Button
-// $('#attack-btn').on('click', function(){})
-
-
-characters.frodo.createDiv();
-characters.gandalf.createDiv();
-characters.smeagol.createDiv();
-characters.sauron.createDiv();
-startGame()
-
-
-
-
-
-
-// var charFrodo = $('#char-frodo')
-// var charGandalf = $('#char-gandalf')
-// var charSmeagol = $('#char-smeagol')
-// var charSauron = $('#char-sauron')
-
-
+$(document).ready(function() {
+    game.functions.initGame();
+});
 
 
 
@@ -187,3 +166,83 @@ startGame()
 // Your attack power increases with every blow and continues to stay higher when you defeat a character. 
 // If you beat all the enemies, you win and there is a restart button to restart. 
 
+// var pickCharacterReady;
+// var pickFightReady
+// var yourCharacter;
+// var yourHealth;
+// var yourAttack;
+// var yourEnemies;
+// var yourOpponent;
+// var readyForAttack;
+
+// // Choose your character
+
+// function startGame() {
+//     game.characters.frodo.createDiv();
+//     game.characters.gandalf.createDiv();
+//     game.characters.smeagol.createDiv();
+//     game.characters.sauron.createDiv();
+//     pickCharacter();
+// }
+
+
+    
+
+// function pickCharacter(){
+
+//     $('.choice').on("click",function(event){
+//         $(this).removeClass('enemy');
+//         yourCharacter = $(this);
+//         yourHealth = $(this).attr('health');
+//         yourAttack = $(this).attr('attack');
+//         yourHealth = parseInt(yourHealth);
+//         yourAttack = parseInt(yourAttack);
+//         $('.your-character').append(yourCharacter);
+//         yourEnemies = $('.enemy');
+//         yourEnemies.removeClass('choice');
+//         $('.enemies-to-attack').append(yourEnemies);
+//         console.log('character chosen');
+//         $('div').off("click");
+//         $('.character-choose').hide()
+//         pickEnemyToFight();
+//     });
+
+// }
+
+// function pickEnemyToFight() {
+
+//     $('.enemy').on("click",function(event){
+//         $(this).addClass('yourOpponent');
+//         yourOpponent = $(this);
+//         opponentHealth = $(this).attr('health');
+//         opponentAttack = $(this).attr('attack');
+//         opponentHealth = parseInt(opponentHealth);
+//         opponentAttack = parseInt(opponentAttack);
+//         $('.opponent').append(yourOpponent);
+//         $('div').off("click");
+//         console.log("enemy chosen");
+//     })
+
+// }
+
+// function damageDone(){
+//     var yourHealth = $('.')
+// }
+
+
+// Button
+// $('#attack-btn').on('click', function(){})
+
+
+
+// startGame()
+
+
+
+
+
+
+// var charFrodo = $('#char-frodo')
+// var charGandalf = $('#char-gandalf')
+// var charSmeagol = $('#char-smeagol')
+// var charSauron = $('#char-sauron')
