@@ -3,12 +3,11 @@
 // Game Object
 var game = {
     characters : {
-        frodo : {
-            name: 'frodo',
-            health: 120,
-            attack: 12,
-            imgURL: "https://cdn.costumewall.com/wp-content/uploads/2017/06/frodo-baggins.jpg",
-            enemyAttack: 20,
+        balrog : {
+            name: 'balrog',
+            health: 150,
+            attack: 15,
+            imgURL: "http://eskipaper.com/images/scary-monster-wallpaper-1.jpg",
             createDiv: function(){
                 var wrapDiv = $("<div></div>").addClass(`char-div col-xs-3 choice enemy char-${this.name}`)
                 var nameDiv = $("<h4></h4>").text(this.name);
@@ -22,9 +21,8 @@ var game = {
         smeagol : {
             name: 'smeagol',
             health: 130,
-            attack: 12,
+            attack: 15,
             imgURL: "https://cdna.artstation.com/p/assets/images/images/004/532/170/large/eduardo-ruiz-urrejola-gollum-pose09.jpg?1484348343",
-            enemyAttack: 20,
             createDiv: function(){
                 var wrapDiv = $("<div></div>").addClass(`char-div col-xs-3 choice enemy char-${this.name}`)
                 var nameDiv = $("<h4></h4>").text(this.name);
@@ -38,9 +36,8 @@ var game = {
         gandalf : {
             name: 'gandalf',
             health: 160,
-            attack: 20,
+            attack: 15,
             imgURL: "https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436",
-            enemyAttack: 22,
             createDiv: function(){
                 var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-gandalf");
                 var nameDiv = $("<h4></h4>").text(this.name);
@@ -54,9 +51,8 @@ var game = {
         sauron : {
             name: 'sauron',
             health: 180,
-            attack: 25,
+            attack: 15,
             imgURL: "https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330",
-            enemyAttack: 20,
             createDiv: function(){
                 var wrapDiv = $("<div></div>").addClass("char-div col-xs-3 choice enemy char-sauron");
                 var nameDiv = $("<h4></h4>").text(this.name);
@@ -83,33 +79,38 @@ var game = {
             yourAttack : 0;
             yourEnemies : "";
             yourOpponent : "";
+            charactersLeft = 4;
             $('.char-div').remove();
-            game.characters.frodo.createDiv();
             game.characters.gandalf.createDiv();
             game.characters.smeagol.createDiv();
+            game.characters.balrog.createDiv();            
             game.characters.sauron.createDiv();
-            charactersLeft = $('.char-div').length
             game.functions.pickCharacter();
-            $('.character-choose').show()
-            $('.your-character').hide()
-            $('.fight-button').hide()
-            $('.opponent').hide()
-            $('.enemies').hide()
-            $('.your-death-note').hide()
-            $('.opponent-death-note').hide()
+            $('.your-character').removeClass('col-xs-offset-3');
+            $('.storyline').show()
+            $('.character-choose').show();
+            $('.your-character').hide();
+            $('.fight-button').hide();
+            $('.result-note').hide();
+            $('.opponent').hide();
+            $('.enemies').hide();
+            $('.your-death-note').hide();
+            $('.opponent-death-note').hide();
+            $('.win-text').text('Your Enemies')
+            
         },
-        initCharacter : function() {
-            function create(){
-                var wrapDiv = $("<div></div>").addClass(`char-div col-xs-3 choice enemy char-${this.name}`)
-                var nameDiv = $("<h4></h4>").text(this.name);
-                var health = $("<p class = 'health-display'></p>").text(this.health);
-                wrapDiv.append(nameDiv, health);
-                wrapDiv.attr("health",this.health);
-                wrapDiv.attr("attack",this.attack);
-                $(".character-choose").append(wrapDiv);
-            }
-            create()
-        },
+        // initCharacter : function() {
+        //     function create(){
+        //         var wrapDiv = $("<div></div>").addClass(`char-div col-xs-3 choice enemy char-${this.name}`)
+        //         var nameDiv = $("<h4></h4>").text(this.name);
+        //         var health = $("<p class = 'health-display'></p>").text(this.health);
+        //         wrapDiv.append(nameDiv, health);
+        //         wrapDiv.attr("health",this.health);
+        //         wrapDiv.attr("attack",this.attack);
+        //         $(".character-choose").append(wrapDiv);
+        //     }
+        //     create()
+        // },
         pickCharacter : function() {
             $('.choice').on("click",function(event){
                 $('.your-character').show()
@@ -129,7 +130,8 @@ var game = {
                 $('.enemies').append(yourEnemies);
                 console.log('character chosen');
                 $('div').off("click");
-                $('.character-choose').hide()
+                $('.character-choose').hide();
+                $('.storyline').hide();
                 game.functions.pickEnemyToFight();  
             });
         },
@@ -152,7 +154,7 @@ var game = {
             $('.fight-button').on("click",function(event){
                 yourHealth = yourHealth - opponentAttack;
                 opponentHealth = opponentHealth - yourAttack;
-                yourAttack = yourAttack + Math.floor(yourAttack * 0.2);
+                yourAttack = yourAttack + Math.floor(yourAttack * 0.4);
                 yourCharacter.children('.health-display').text(yourHealth);
                 yourOpponent.children('.health-display').text(opponentHealth);
                 console.log(`Your Character's Health: ${yourHealth}`);
@@ -163,7 +165,8 @@ var game = {
                     $('.button-text').text("Restart!");
                     $('.fight-button').off("click");
                     $('.titles').hide()
-                    $('.result-note').text("Drats! You all have died. Click sheild to restart")
+                    $('.result-note').text("Drats! You have all died. Click the sheild to restart and redeem yourself...")
+                    $('.result-note').show();
                     $('.fight-button').on("click",function(event){
                         game.functions.initGame();
                     });                
@@ -193,9 +196,9 @@ var game = {
             });
         },
         winScreen : function() {
-            $('.your-character').addClass('col-xs-offset-3')
+            $('.your-character').addClass('col-xs-offset-3');
             // $('.fight-button').hide()
-            $('.opponent').hide()
+            $('.opponent').hide();
             $('.win-text').text('Wins!')
         }
     }
@@ -204,6 +207,4 @@ var game = {
 // When document is ready, start game
 $(document).ready(function() {
     game.functions.initGame();
-    var y = $('.char-div').length;
-    console.log(y);
 });

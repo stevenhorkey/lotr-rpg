@@ -8,14 +8,9 @@ body {
     color: #ebe0c5;
     text-align: center;
     text-transform: capitalize;
+    max-height: 100vh;
     /* background-color: black; */
 }
-
-/* .head-banner{
-    background-color: antiquewhite;
-    height: 80px;
-    color: black;
-} */
 
 /* Characters */
 .char-div{
@@ -26,16 +21,15 @@ body {
     background: black;
     background-size: cover;
     background-position: center;
-    /* width: 25%; */
     font-size: 1.4em;
     line-height: 1.4;
+    border: outset 1px black;
 }
 
-
-.char-frodo{
-    background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url('https://cdn.costumewall.com/wp-content/uploads/2017/06/frodo-baggins.jpg');
+.char-balrog{
+    background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url('http://eskipaper.com/images/scary-monster-wallpaper-1.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: left top;
     
 }
 .char-smeagol{
@@ -60,13 +54,24 @@ h4 {
     font-size: 1.5em;
 }
 
+h3{
+    margin-top: 50px;
+}
+
 p {
     font-size: 4em;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Spectral', serif;
 }
 
 h1{
     margin-bottom: 50px;
+}
+.storyline {
+    font-size: 30px;
+    text-transform: none;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 40px;
 }
 /* Containers */
 .container {
@@ -93,25 +98,25 @@ h1{
 }
 /* Fight Section */
 .fight-button{
-    margin-top: 20px;
-
+    margin-top: 60px;
 }
 
-i {
+.sheild {
     color: rgb(163, 133, 78);
-    margin: 0px 0 50px 0;
-    padding: 0 20px 20px 20px;
-    font-size: 10em;
-
-
+    margin: 20px 0 50px 0;
+    font-size: 9em;
+    display: block;
 }
+
 /* Defender Section */
 .opponent>.char-div{
     width: 100%;
+}
 
+.result-note {
+    margin-top: 80px;
 }
 /* Footer */
 .footer{
     height: 150px;
-
 }
