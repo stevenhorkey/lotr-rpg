@@ -12,6 +12,25 @@ body {
     /* background-color: black; */
 }
 
+h1{
+    margin-bottom: 50px;
+    text-decoration: none;
+    color: #ebe0c5;
+}
+
+h3{
+    margin-top: 50px;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 4em;
+    font-family: 'Spectral', serif;
+}
+
 /* Characters */
 .char-div{
     border-radius: 50px;
@@ -50,22 +69,6 @@ body {
 
 }
 
-h4 {
-    font-size: 1.5em;
-}
-
-h3{
-    margin-top: 50px;
-}
-
-p {
-    font-size: 4em;
-    font-family: 'Spectral', serif;
-}
-
-h1{
-    margin-bottom: 50px;
-}
 .storyline {
     font-size: 30px;
     text-transform: none;
@@ -73,29 +76,12 @@ h1{
     padding: 10px;
     border-radius: 40px;
 }
-/* Containers */
-.container {
-
-}
-/* Header */
-.header {
-
-}
-/* Character Choice Section */
-.character-choose {
- /* height: 200px; */
-}
 
 /* Your Character Section */
 .your-character>.char-div{
     width: 100%;
 }
 
-/* Enemies to Attack section */
-.enemies-to-attack{
-    /* height: 200px; */
-
-}
 /* Fight Section */
 .fight-button{
     margin-top: 60px;
@@ -116,7 +102,4 @@ h1{
 .result-note {
     margin-top: 160px;
 }
-/* Footer */
-.footer{
-    height: 150px;
-}
+

@@ -70,9 +70,7 @@ var game = {
             $('.opponent').hide();
             $('.enemies').hide();
             $('.your-death-note').hide();
-            $('.opponent-death-note').hide();
-            $('.win-text').text('Your Enemies')
-            
+            $('.opponent-death-note').hide();            
         },
         pickCharacter : function() {
             $('.choice').on("click",function(event){
@@ -101,7 +99,7 @@ var game = {
         },
         pickEnemyToFight : function() {
             $('.enemy').on("click",function(event){
-                $('.win-text').show();                
+                $('.enemy-text').show();                
                 $('.enemies').show();                
                 $('.opponent-death-note').hide()
                 $(this).addClass('yourOpponent');
@@ -123,7 +121,7 @@ var game = {
             $('.fight-button').on("click",function(event){
                 yourHealth = yourHealth - opponentAttack;
                 opponentHealth = opponentHealth - yourAttack;
-                yourAttack = yourAttack + Math.floor(yourAttack * 0.2);
+                yourAttack = yourAttack + Math.floor(yourAttack * 0.25);
                 yourCharacter.children('.health-display').text(yourHealth);
                 yourOpponent.children('.health-display').text(opponentHealth);
                 console.log(`Your Character's Health: ${yourHealth}`);
@@ -135,7 +133,8 @@ var game = {
                     $('.fight-button').off("click");
                     $('.titles').hide();
                     $('.result-note').show();
-                    $('.result-note').text("Drats! You have all died. Click the sheild to restart and redeem yourself...");
+                    $('.result-note').text("Drats! Dying sucks doesn't it? Click the sheild to restart and redeem yourself...");
+                    $('.char-div').remove()
                     $('.fight-button').on("click",function(event){
                         game.functions.initGame();
                     });                
@@ -169,7 +168,7 @@ var game = {
             $('.your-character').addClass('col-xs-offset-3');
             // $('.fight-button').hide()
             $('.opponent').hide();
-            $('.win-text').text('Wins!')
+            yourCharacter.children('.health-display').text("Wins!");            
         }
     }
 }
