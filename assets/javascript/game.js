@@ -19,14 +19,13 @@ var game = {
             name: 'gandalf',
             health: 160,
             attack: 18,
-            imgURL: "https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436",
-            // createDiv: initCharacter()
+            imgURL: "../images/gandalf.jpg",
         },
         sauron : {
             name: 'sauron',
             health: 180,
             attack: 20,
-            imgURL: "https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330",
+            imgURL: "../images/sauron.jpg",
         }
     },
     variables : {

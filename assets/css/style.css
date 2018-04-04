@@ -57,13 +57,13 @@ p {
     background-position: center;
 }
 .char-gandalf{
-    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('https://vignette.wikia.nocookie.net/lotr/images/8/8d/Gandalf-2.jpg/revision/latest?cb=20130209172436');
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('../images/gandalf.jpg');
     background-size: cover;
     background-position: center;
 
 }
 .char-sauron{
-    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('https://wordsonfilmsdotcom.files.wordpress.com/2014/06/sauron2.png?w=600&h=330');
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('../images/sauron.jpg');
     background-size: cover;
     background-position: center;
 
