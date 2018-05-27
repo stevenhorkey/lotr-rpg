@@ -12,9 +12,6 @@ Otherwise, clone a copy of the repo to your machine to develop and contribute.
 
 Knowledge of basic HTML, CSS, JavaScript, and JQuery.
 
-```
-Give examples
-```
 
 ## Deployment
 
